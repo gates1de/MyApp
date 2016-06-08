@@ -1,0 +1,39 @@
+version: '2' 
+services:
+  backend: 
+    container_name: spring-boot
+    build: ./MyApp-server
+    ports:
+      - '8080:8080'
+    environment:
+      REDIS_URL: redis://redis:6379
+    links:
+      - db
+      - redis
+  db:
+    container_name: mysql
+    build: ./db
+    environment:
+      MYSQL_DATABASE: myapp_db 
+      MYSQL_ROOT_PASSWORD: root 
+      MYSQL_USER: myapp
+      MYSQL_PASSWORD: password 
+    ports:
+      - '3306:3306'
+    volumes_from:
+      - datastore
+  datastore:
+    container_name: datastore
+    build: ./datastore
+  redis:
+    container_name: redis
+    build: ./redis
+    ports:
+      - '6379:6379'
+  apache:
+    container_name: apache
+    build: ./apache
+    ports:
+      - '80:80'
+    links:
+      - backend

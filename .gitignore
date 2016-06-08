@@ -1,0 +1,15 @@
+*.DS_Store
+.DS_Store
+
+
+MyApp-server/.gradle
+MyApp-server/*.sw?
+MyApp-server/build/classes
+MyApp-server/build/dependency-cache
+MyApp-server/build/reports
+MyApp-server/build/resources
+MyApp-server/build/test-results
+MyApp-server/build/tmp
+MyApp-server/.classpath
+
+MyApp-client/node_modules
